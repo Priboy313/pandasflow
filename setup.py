@@ -7,10 +7,10 @@ requirements = ["pandas>=2.0.0"]
 
 setup(
     name="pandasflow",
-    version="0.0.1",
+    version="0.0.1a",
     author="Priboy313",
     author_email="",
-    description="Module for frendly workflow on pandas",
+    description="Module for friendly workflow on pandas",
     long_description=readme,
     long_description_content_type="text/markdown",
     url="",
