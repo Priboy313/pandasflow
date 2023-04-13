@@ -1,6 +1,6 @@
 import pandas as pd
 
-def reset_mindex(table:pd.DataFrame, sep:str='_') -> pd.DataFrame:
+def reset_mi(table:pd.DataFrame, sep:str='_') -> pd.DataFrame:
 	'''
 	Change table columns name from
 	 _____________________________
