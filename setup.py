@@ -3,11 +3,11 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
-requirements = ["pandas>=2.0.0"]
+requirements = []
 
 setup(
     name="pandasflow",
-    version="0.0.1a",
+    version="0.0.6",
     author="Priboy313",
     author_email="",
     description="Module for friendly workflow on pandas",
