@@ -62,12 +62,12 @@ def train_valid_test_split(
 	
 	
 	print(f'''
-train:	len = {len(train)} 	pie = {train_pie}
-valid:	len = {len(valid)} 	pie = {valid_pie}
-test:	len = {len(test)} 	pie = {test_pie}
+train:	{len(train)},	{train_pie}
+valid:	{len(valid)},	{valid_pie}
+test:	{len(test)},	{test_pie}
 ---
-IniData	len = {len(arrays[0])}
-Amount	len = {len(train) + len(valid) + len(test)}
+IniData	{len(arrays[0])}
+Amount	{amount_len}, {amount_len / len(arrays[0])}
 '''[1:-1])
 	
 	return train, valid, test

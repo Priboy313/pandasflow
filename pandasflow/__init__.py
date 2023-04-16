@@ -6,7 +6,7 @@ from pandasflow.mean_error import mean_error
 from pandasflow.train_valid_test_split import train_valid_test_split
 
 
-__version__ = '0.1.5'
+__version__ = '0.1.6'
 
-requirements = ['prettytable==3.7.0']
+requirements = []
 

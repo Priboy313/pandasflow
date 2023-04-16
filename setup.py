@@ -10,7 +10,7 @@ setup(
     name="pandasflow",
     version=pandasflow.__version__,
     author="Priboy313",
-    author_email="",
+    author_email="Priboy313@yandex.ru",
     description="Module for friendly workflow on pandas",
     long_description=readme,
     long_description_content_type="text/markdown",
