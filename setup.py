@@ -11,7 +11,7 @@ setup(
     version=pandasflow.__version__,
     author="Priboy313",
     author_email="Priboy313@yandex.ru",
-    description="Module for friendly workflow on pandas",
+    description="A set of custom python modules for friendly workflow on pandas",
     long_description=readme,
     long_description_content_type="text/markdown",
     url="https://github.com/Priboy313/pandasflow",
