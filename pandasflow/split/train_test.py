@@ -1,5 +1,4 @@
 import pandasflow as pdf
-from pandasflow.services import get_column_name
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -50,10 +49,7 @@ def train_test(
 	
 	_stratify = stratify
 	if stratify != None:
-		if type(stratify) == pd.Series:
-			_stratify = df[get_column_name(stratify)]
-		elif type(stratify) == str:
-			_stratify = df[stratify]
+		_stratify = df[stratify]
 	
 	train, test = train_test_split(*arrays, train_size=train_size, random_state=random_state, shuffle=shuffle, stratify=_stratify)
 	
@@ -89,13 +85,23 @@ def train_test(
 	
 	if target != None:
 		try:
-			table[target] = [train[target].mean(),
-							test[target].mean(),
-							'',
-							'',
-							df[target].mean()]
+			if type(target) is str:
+				table[target] = [train[target].mean(),
+								 test[target].mean(),
+								 '',
+								 '',
+								 df[target].mean()]
+			
+			
+			elif type(target) is list:
+				for col in list(target):
+					table[col] = [train[col].mean(),
+								  test[col].mean(),
+								  '',
+								  '',
+								  df[col].mean()]
 		except KeyError:
-			raise KeyError(target)
+			raise KeyError(*target)
 	
 	print(table)
 	

@@ -1,5 +1,4 @@
 import pandasflow as pdf
-from pandasflow.services import get_column_name
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -58,11 +57,7 @@ def train_valid_test(
 	
 	_strat_col = None
 	_stratify = None
-	if stratify != None:
-		if type(stratify) == pd.Series:
-			_strat_col = get_column_name(stratify)
-		elif type(stratify) == str:
-			_strat_col = stratify
+	if stratify != None: _strat_col = stratify
 	
 	if _strat_col != None: _stratify = df[_strat_col]
 	train, valid_test = train_test_split(*arrays, train_size=train_size, random_state=random_state, shuffle=shuffle, stratify=_stratify)
@@ -102,14 +97,25 @@ def train_valid_test(
 	
 	if target != None:
 		try:
-			table[target] = [train[target].mean(),
-							valid[target].mean(),
-							test[target].mean(),
-							'',
-							'',
-							df[target].mean()]
+			if type(target) is str:
+				table[target] = [train[target].mean(),
+							  valid[target].mean(),
+							  test[target].mean(),
+							  '',
+							  '',
+							  df[target].mean()]
+			
+			
+			elif type(target) is list:
+				for col in list(target):
+					table[col] = [train[col].mean(),
+									valid[col].mean(),
+									test[col].mean(),
+									'',
+									'',
+									df[col].mean()]
 		except KeyError:
-			raise KeyError(target)
+			raise KeyError(*target)
 	
 	table.index = ['train',
 				   'valid',
