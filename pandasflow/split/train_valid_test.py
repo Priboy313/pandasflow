@@ -1,7 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from IPython.display import display
 
-def train_valid_test_split(
+def train_valid_test(
 	*arrays,
 	test_size=None,
 	train_size=0.6,
@@ -68,8 +69,15 @@ def train_valid_test_split(
 		#proportion
 		'  ': [train_pie, valid_pie, test_pie, '', amount_prop, '']})
 	
-	table.index = ['train', 'valid', 'test', '---', 'Amount', 'InitData']
-	print(table)
+	table.index = ['train',
+				   'valid',
+				   'test',
+				   '---',
+				   'Amount',
+				   'InitData']
+	# print(table)
+	display(table)
+	
 	
 	if amount_prop != 1.0 or len(arrays[0]) != amount_len:
 		print('---')
@@ -79,7 +87,7 @@ def train_valid_test_split(
 
 
 if __name__ == "__main__":
-	train, valid, test = train_valid_test_split([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 3, round_=2)
+	train, valid, test = train_valid_test([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 3, round_=2)
 
 '''return:
 

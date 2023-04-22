@@ -2,7 +2,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-def train_test_split_(
+def train_test(
 	*arrays,
 	test_size=None,
 	train_size=0.8,
@@ -72,7 +72,7 @@ def train_test_split_(
 
 
 if __name__ == "__main__":
-	train, test = train_test_split_([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 3,
+	train, test = train_test([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 3,
 									train_size=0.6,
 									round_=2)
 

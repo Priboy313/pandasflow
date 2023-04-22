@@ -14,5 +14,5 @@ twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 ##Загрузить проект на PyPI
 ~~~
- twine upload dist/*
+twine upload dist/*
 ~~~
