@@ -3,9 +3,9 @@
 
 
 
-__version__ = '0.2.0'
+__version__ = '0.2.2'
 
-requirements = ['pandas', 'scikit-learn', 'ipython']
+requirements = ['pandas', 'scikit-learn']
 
 
 

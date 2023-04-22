@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from IPython.display import display
 
 def train_valid_test(
 	*arrays,
@@ -75,8 +74,7 @@ def train_valid_test(
 				   '---',
 				   'Amount',
 				   'InitData']
-	# print(table)
-	display(table)
+	print(table)
 	
 	
 	if amount_prop != 1.0 or len(arrays[0]) != amount_len:
