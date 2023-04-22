@@ -1,6 +1,7 @@
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from IPython.display import display
 
 def train_test(
 	*arrays,
@@ -62,7 +63,8 @@ def train_test(
 		'  ': [train_pie, test_pie, '', amount_prop, '']})
 	
 	table.index = ['train', 'test', '---', 'Amount', 'InitData']
-	print(table)
+	# print(table)
+	display(table)
 	
 	if amount_prop != 1.0 or len(arrays[0]) != amount_len:
 		print('---')

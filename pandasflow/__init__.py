@@ -5,7 +5,7 @@
 
 __version__ = '0.2.0'
 
-requirements = ['pandas', 'scikit-learn']
+requirements = ['pandas', 'scikit-learn', 'ipython']
 
 
 
@@ -18,8 +18,6 @@ from pandasflow.mean_error import mean_error
 
 
 # packages
-from pandasflow import geti
-
 from pandasflow import split
 
 
