@@ -1,3 +1,6 @@
+import pandasflow as pdf
+from pandasflow.services import get_column_name
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -8,7 +11,8 @@ def train_valid_test(
 	random_state=42,
 	shuffle=True,
 	stratify=None,
-	round_=None
+	round_=None,
+	target=None
 ):
 	"""
 	Split arrays or matrices into random train, valid and test subsets.
@@ -40,22 +44,38 @@ def train_valid_test(
 	round_ : int, RandomState more 0 or None, default=None
 		Print the proportion of each array with rounding.
 		If None or 0 print all numbers after the decimal point
+	
+	target : None, str, pd.Series, default = None
+		Add new columns with mean float proportion for tvt and df
 	"""
+	
+	df = arrays[0]
 	
 	if test_size in [None, 0]:
 		test_size_pice = ((1 - train_size) / 2) / (1 - train_size)
 	else:
 		test_size_pice = test_size / (1 - train_size)
 	
-	train, valid_test = train_test_split(arrays[0], train_size=train_size, random_state=random_state, shuffle=shuffle, stratify=stratify)
-	valid, test = train_test_split(valid_test, test_size=test_size_pice, random_state=random_state, shuffle=shuffle, stratify=stratify)
+	_strat_col = None
+	_stratify = None
+	if stratify != None:
+		if type(stratify) == pd.Series:
+			_strat_col = get_column_name(stratify)
+		elif type(stratify) == str:
+			_strat_col = stratify
 	
-	train_pie = len(train) / len(arrays[0])
-	valid_pie = len(valid) / len(arrays[0])
-	test_pie = len(test) / len(arrays[0])
+	if _strat_col != None: _stratify = df[_strat_col]
+	train, valid_test = train_test_split(*arrays, train_size=train_size, random_state=random_state, shuffle=shuffle, stratify=_stratify)
+	
+	if _strat_col != None: _stratify = valid_test[_strat_col]
+	valid, test = train_test_split(valid_test, test_size=test_size_pice, random_state=random_state, shuffle=shuffle, stratify=_stratify)
+	
+	train_pie = len(train) / len(df)
+	valid_pie = len(valid) / len(df)
+	test_pie = len(test) / len(df)
 	
 	amount_len = len(train) + len(valid) + len(test)
-	amount_prop = amount_len / len(arrays[0])
+	amount_prop = amount_len / len(df)
 	
 	if round_ not in [None, 'n', 'N'] and round_ > 0:
 		train_pie = round(train_pie, round_)
@@ -63,10 +83,33 @@ def train_valid_test(
 		test_pie = round(test_pie, round_)
 	
 	table = pd.DataFrame({
-		#count
-		' ': [len(train), len(valid), len(test), '', amount_len, len(arrays[0])],
-		#proportion
-		'  ': [train_pie, valid_pie, test_pie, '', amount_prop, '']})
+		'count': [len(train),
+				len(valid),
+				len(test),
+				'',
+				amount_len,
+				len(df)],
+		
+		'prop': [train_pie,
+				 valid_pie,
+				 test_pie,
+				 '',
+				 amount_prop,
+				 ''],
+		
+		
+	})
+	
+	if target != None:
+		try:
+			table[target] = [train[target].mean(),
+							valid[target].mean(),
+							test[target].mean(),
+							'',
+							'',
+							df[target].mean()]
+		except KeyError:
+			raise KeyError(target)
 	
 	table.index = ['train',
 				   'valid',
@@ -77,22 +120,8 @@ def train_valid_test(
 	print(table)
 	
 	
-	if amount_prop != 1.0 or len(arrays[0]) != amount_len:
+	if amount_prop != 1.0 or len(df) != amount_len:
 		print('---')
 		print('Some data is droped')
 	
 	return train, valid, test
-
-
-if __name__ == "__main__":
-	train, valid, test = train_valid_test([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 3, round_=2)
-
-'''return:
-
-train     19  0.58
-valid      7  0.21
-test       7  0.21
----
-Amount    33   1.0
-InitData  33
-'''

@@ -1,3 +1,5 @@
+import pandasflow as pdf
+from pandasflow.services import get_column_name
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -9,7 +11,8 @@ def train_test(
 	random_state=42,
 	shuffle=True,
 	stratify=None,
-	round_=None
+	round_=None,
+	target=None
 ):
 	"""
 	Split arrays or matrices into random train and test subsets.
@@ -43,7 +46,16 @@ def train_test(
 		If None or 0 print all numbers after the decimal point
 	"""
 	
-	train, test = train_test_split(arrays[0], train_size=train_size, random_state=random_state, shuffle=shuffle, stratify=stratify)
+	df = arrays[0]
+	
+	_stratify = stratify
+	if stratify != None:
+		if type(stratify) == pd.Series:
+			_stratify = df[get_column_name(stratify)]
+		elif type(stratify) == str:
+			_stratify = df[stratify]
+	
+	train, test = train_test_split(*arrays, train_size=train_size, random_state=random_state, shuffle=shuffle, stratify=_stratify)
 	
 	train_pie = len(train) / len(arrays[0])
 	test_pie = len(test) / len(arrays[0])
@@ -56,12 +68,35 @@ def train_test(
 		test_pie = round(test_pie, round_)
 	
 	table = pd.DataFrame({
-		# count
-		' ': [len(train), len(test), '', amount_len, len(arrays[0])],
-		# proportion
-		'  ': [train_pie, test_pie, '', amount_prop, '']})
+		'count': [len(train),
+			  len(test),
+			  '',
+			  amount_len,
+			  len(arrays[0])],
+		
+		'prop': [train_pie,
+			   test_pie,
+			   '',
+			   amount_prop,
+			   '']
+	})
 	
-	table.index = ['train', 'test', '---', 'Amount', 'InitData']
+	table.index = ['train',
+				   'test',
+				   '---',
+				   'Amount',
+				   'InitData']
+	
+	if target != None:
+		try:
+			table[target] = [train[target].mean(),
+							test[target].mean(),
+							'',
+							'',
+							df[target].mean()]
+		except KeyError:
+			raise KeyError(target)
+	
 	print(table)
 	
 	if amount_prop != 1.0 or len(arrays[0]) != amount_len:
@@ -69,22 +104,6 @@ def train_test(
 		print('Some data is droped')
 	
 	return train, test
-
-
-if __name__ == "__main__":
-	train, test = train_test([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] * 3,
-									train_size=0.6,
-									round_=2)
-
-''' return:
-
-train     19  0.58
-test      14  0.42
----
-Amount    33   1.0
-InitData  33
-'''
-
 
 
 
