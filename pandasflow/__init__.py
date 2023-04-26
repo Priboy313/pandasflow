@@ -3,9 +3,9 @@
 
 
 
-__version__ = '0.3.3a'
+__version__ = '0.4.1'
 
-requirements = ['pandas', 'scikit-learn']
+requirements = ['pandas', 'scikit-learn', 'catboost', 'phik', 'shap']
 
 
 
@@ -13,14 +13,13 @@ requirements = ['pandas', 'scikit-learn']
 from pandasflow.get_import import get_import
 
 from pandasflow.reset_mi import reset_mi
-from pandasflow.mean_error import mean_error
 
 
 
 # packages
 from pandasflow import split
 
-
+from pandasflow import metrics
 
 
 
