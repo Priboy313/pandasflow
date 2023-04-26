@@ -60,9 +60,9 @@ def lloss_up(df, target, score, pct=0.2, baseline=None):
 	base, up = _uplift(df, target, score, pct, baseline=baseline)
 	
 	table = pd.DataFrame()
-	table.index = ['base', 'lloss', 'uplift']
+	table.index = ['baseline', 'log_loss', 'uplift']
 	table[' '] = [base, lloss, up]
 	
 	print(table)
-	
+	print()
 	return base, lloss, up

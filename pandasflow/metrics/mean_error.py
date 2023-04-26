@@ -13,5 +13,5 @@ def mean_error(y_true, y_pred):
 	table[' '] = [mae, mape]
 
 	print(table)
-	
+	print()
 	return mae, mape
