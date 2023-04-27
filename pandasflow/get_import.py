@@ -10,9 +10,8 @@ import matplotlib.pyplot as plt
 import phik
 import shap
 
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error
-from sklearn.metrics import log_loss
+from catboost import CatBoostClassifier, CatBoostRegressor
+from catboost import Pool
 
 plt.style.use("dark_background")
 shap.initjs()
