@@ -4,7 +4,7 @@ import pandas as pd
 
 
 
-def conf_mat(df, y_true, y_pred, labels=None, sample_weight=None, normalize=None):
+def conf_mat(y_true, y_pred, labels=None, sample_weight=None, normalize=None):
 	"""Compute confusion matrix to evaluate the accuracy of a classification.
 	
 		Parameters
@@ -26,7 +26,7 @@ def conf_mat(df, y_true, y_pred, labels=None, sample_weight=None, normalize=None
 		C :
 			TN, FP, FN, TP
 	"""
-	tn, fp, fn, tp = confusion_matrix(df[y_true], df[y_pred], labels=labels, sample_weight=sample_weight, normalize=normalize).ravel()
+	tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=labels, sample_weight=sample_weight, normalize=normalize).ravel()
 	
 	table = pd.DataFrame()
 	table['']   = ['TN', 'FN']
