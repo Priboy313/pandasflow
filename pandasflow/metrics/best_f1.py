@@ -4,9 +4,9 @@ from sklearn.metrics import f1_score
 from tqdm.notebook import tqdm
 
 
-def best_f1(y_true:pd.Series, score:pd.Series, out=1, tqdm_=True):
+def best_f1(y_true:pd.Series, score:pd.Series, out:int=1, tqdm_:bool=True):
 	thrs = list(score.unique())
-	thrs = [max(min(thrs) - 0.000001, 0)] + thrs
+	thrs = [max(min(thrs) - 0.000001, 0.000001)] + thrs
 	
 	df = pd.concat([y_true, score], axis=1)
 	
