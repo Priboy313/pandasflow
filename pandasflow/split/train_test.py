@@ -70,7 +70,7 @@ def train_test(
 			  amount_len,
 			  len(arrays[0])],
 		
-		'prop': [train_pie,
+		'pct': [train_pie,
 			   test_pie,
 			   '',
 			   amount_prop,
@@ -79,7 +79,7 @@ def train_test(
 	
 	table.index = ['train',
 				   'test',
-				   '---',
+				   '',
 				   'Amount',
 				   'InitData']
 	

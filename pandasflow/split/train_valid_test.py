@@ -85,7 +85,7 @@ def train_valid_test(
 				amount_len,
 				len(df)],
 		
-		'prop': [train_pie,
+		'pct': [train_pie,
 				 valid_pie,
 				 test_pie,
 				 '',
@@ -120,7 +120,7 @@ def train_valid_test(
 	table.index = ['train',
 				   'valid',
 				   'test',
-				   '---',
+				   '',
 				   'Amount',
 				   'InitData']
 	print(table)
