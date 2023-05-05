@@ -16,7 +16,7 @@ t['y_score1'] = np.concatenate([np.random.uniform(0, 0.2, size=970),
                                 np.random.uniform(0.8, 1, size=5)])
 
 t['y_score2'] = np.concatenate([np.random.uniform(0, 0.2, size=900), #TN
-                                np.random.uniform(0.8, 1, size=90), #FP
+                                np.random.uniform(0.8, 1, size=90),  #FP
                                 np.random.uniform(0, 0.2, size=4),   #FN
                                 np.random.uniform(0.8, 1, size=6)])  #TP
 
@@ -27,8 +27,8 @@ t['y_score3'] = np.concatenate([np.random.uniform(0, 0.2, size=850), #TN
 
 
 
-pdf.metrics.precision_recall(t, target='y_true', score=['y_score1'])
+# pdf.metrics.precision_recall(t['y_true'], score=t['y_score1'])
 
-pdf.metrics.precision_recall(t, target='y_true', score=['y_score1', 'y_score2'])
+# pdf.metrics.precision_recall(t['y_true'], score=[t['y_score1'], t['y_score2']])
 
-pdf.metrics.precision_recall(t, target='y_true', score=['y_score1', 'y_score2', 'y_score3'])
+pdf.metrics.precision_recall(t['y_true'], score=[t['y_score1'], t['y_score2'], t['y_score3']], plot=True)
