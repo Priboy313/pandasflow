@@ -26,9 +26,10 @@ def precision_recall(target, score, plot=False, round_=2):
 			average = average_precision_score(target, sc)
 			average = round(average, round_)
 			print(f"{sc.name} average precision: ", average)
+			
+	pyplot.xlabel('Recall')
+	pyplot.ylabel('Precision')
+	pyplot.legend()
 	
 	if plot:
-		pyplot.xlabel('Recall')
-		pyplot.ylabel('Precision')
-		pyplot.legend()
 		pyplot.show()
