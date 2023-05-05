@@ -4,7 +4,7 @@ from sklearn.metrics import precision_recall_curve, average_precision_score
 from matplotlib import pyplot
 
 
-def precision_recall(df, target, score, plot=True, round_=2):
+def precision_recall(df, target, score, plot=False, round_=2):
 	
 	if type(score) == str or type(score) == list and len(score) == 1:
 		precision, recall, _ = precision_recall_curve(df[target], df[score])
