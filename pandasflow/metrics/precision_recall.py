@@ -5,28 +5,20 @@ from matplotlib import pyplot
 
 
 def precision_recall(target, score, plot=False, marker='', round_=2):
+	if type(score) == pd.Series:
+		score_ = []
+		score_.append(score)
+	else:
+		score_ = score
 	
-	if type(score) == pd.Series or type(score) == list and len(score) == 1:
-		score_ = score if type(score) == pd.Series else score[0]
-		score_name = score_.name
+	for sc in score_:
+		precision, recall, _ = precision_recall_curve(target, sc)
+		pyplot.plot(recall, precision, marker=marker, label=sc.name)
 		
-		precision, recall, _ = precision_recall_curve(target, score_)
-		pyplot.plot(recall, precision, marker=marker, label=score_name)
-		
-		average = average_precision_score(target, score_)
+		average = average_precision_score(target, sc)
 		average = round(average, round_)
-		print(f"{score_name} average precision: ", average)
-	
-	
-	if type(score) == list and len(score) > 1:
-		for sc in score:
-			precision, recall, _ = precision_recall_curve(target, sc)
-			pyplot.plot(recall, precision, marker=marker, label=sc.name)
-			
-			average = average_precision_score(target, sc)
-			average = round(average, round_)
-			print(f"{sc.name} average precision: ", average)
-			
+		print(f"{sc.name} average precision: ", average)
+		
 	pyplot.xlabel('Recall')
 	pyplot.ylabel('Precision')
 	pyplot.legend()
