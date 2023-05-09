@@ -26,7 +26,10 @@ def best_f1(y_true:pd.Series, score:pd.Series, out:int=1, tqdm_:bool=True):
 	result = pd.DataFrame(result, columns=['thr', 'f1'])
 	result = result.sort_values(by='f1', ascending=False)
 	
-	print(result.head(min(out, len(result))))
+	result = result.head(min(out, len(result)))
+	
+	print()
+	print(result)
 
 
 
