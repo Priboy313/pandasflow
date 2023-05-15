@@ -3,7 +3,7 @@
 
 
 
-__version__ = '0.5.0'
+__version__ = '0.5.2'
 
 requirements = ['pandas', 'scikit-learn', 'catboost', 'phik', 'shap', 'tqdm']
 
@@ -13,6 +13,8 @@ requirements = ['pandas', 'scikit-learn', 'catboost', 'phik', 'shap', 'tqdm']
 from pandasflow.get_import import get_import
 
 from pandasflow.get_sqlt import get_sqlt
+
+from pandasflow.get_psql import get_psqlt
 
 from pandasflow.reset_mi import reset_mi
 

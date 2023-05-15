@@ -5,7 +5,6 @@ from sklearn.model_selection import train_test_split
 
 def train_test(
 	*arrays,
-	test_size=None,
 	train_size=0.8,
 	random_state=42,
 	shuffle=True,
@@ -21,13 +20,6 @@ def train_test(
 	*arrays : sequence of indexables with same length / shape[0]
 		Allowed inputs are lists, numpy arrays, scipy-sparse
 		matrices or pandas dataframes.
-
-	test_size : float or int, default=None
-		If float, should be between 0.0 and 1.0 and represent the proportion
-		of the dataset to include in the test split. If int, represents the
-		absolute number of test samples. If None, the value is set to the
-		complement of the train size. If ``train_size`` is also None, it will
-		be set to 0.25.
 
 	train_size : float or int, default=None
 		If float, should be between 0.0 and 1.0 and represent the
@@ -84,22 +76,29 @@ def train_test(
 				   'InitData']
 	
 	if target != None:
+		target_ = []
+		if type(target) == str:
+			target_.append(target)
+		
+		elif type(target) == list:
+			target_ = target
+		
 		try:
-			if type(target) is str:
-				table[target] = [train[target].mean(),
-								 test[target].mean(),
-								 '',
-								 '',
-								 df[target].mean()]
-			
-			
-			elif type(target) is list:
-				for col in list(target):
-					table[col] = [train[col].mean(),
-								  test[col].mean(),
-								  '',
-								  '',
-								  df[col].mean()]
+			for col in list(target_):
+				train_col = train[col].mean()
+				test_col = test[col].mean()
+				df_col = df[col].mean()
+				
+				if round_ not in [None, 'n', 'N'] and round_ > 0:
+					train_col = round(train_col, round_)
+					test_col = round(test_col, round_)
+					df_col = round(df_col, round_)
+				
+				table[col] = [train_col,
+							  test_col,
+							  '',
+							  '',
+							  df_col]
 		except KeyError:
 			raise KeyError(*target)
 	

@@ -7,12 +7,14 @@ import pandas as pd
 train, test = pdf.split.train_test(df)
 print('\n')
 
-
 train, test = pdf.split.train_test(df, target='Exited')
 print('\n')
-
-
 
 train, test = pdf.split.train_test(df, target='Exited', stratify='Exited')
 print('\n')
 
+train, test = pdf.split.train_test(df, target=['Exited', 'Age'], stratify='Exited')
+print('\n')
+
+train, test = pdf.split.train_test(df, target=['Exited', 'Age'], stratify='Exited', round_=3)
+print('\n')

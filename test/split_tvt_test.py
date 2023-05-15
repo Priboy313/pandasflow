@@ -14,12 +14,11 @@ print('\n')
 train, valid, test = pdf.split.train_valid_test(df, target='Exited', stratify='Exited')
 print('\n')
 
-train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'HasCrCard'])
+train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'Age'])
 print('\n')
 
-train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'HasCrCard'], stratify='Exited')
+train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'Age'], stratify='Exited')
 print('\n')
 
-#
-# train, valid, test = pdf.split.train_valid_test(df, target=['Surname'])
-# print('\n')
+train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'Age'], stratify='Exited', round_=3)
+print('\n')

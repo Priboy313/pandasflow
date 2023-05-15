@@ -96,24 +96,33 @@ def train_valid_test(
 	})
 	
 	if target != None:
+		
+		target_ = []
+		if type(target) == str:
+			target_.append(target)
+		
+		elif type(target) == list:
+			target_ = target
+		
 		try:
-			if type(target) is str:
-				table[target] = [train[target].mean(),
-							  valid[target].mean(),
-							  test[target].mean(),
-							  '',
-							  '',
-							  df[target].mean()]
-			
-			
-			elif type(target) is list:
-				for col in list(target):
-					table[col] = [train[col].mean(),
-									valid[col].mean(),
-									test[col].mean(),
-									'',
-									'',
-									df[col].mean()]
+			for col in list(target_):
+				train_col = train[col].mean()
+				valid_col = valid[col].mean()
+				test_col = test[col].mean()
+				df_col = df[col].mean()
+				
+				if round_ not in [None, 'n', 'N'] and round_ > 0:
+					train_col = round(train_col, round_)
+					test_col = round(test_col, round_)
+					valid_col = round(valid_col, round_)
+					df_col = round(df_col, round_)
+				
+				table[col] = [train_col,
+								valid_col,
+								test_col,
+								'',
+								'',
+								df_col]
 		except KeyError:
 			raise KeyError(*target)
 	
