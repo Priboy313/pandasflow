@@ -6,4 +6,8 @@ working with pandas, scikitlearn, catboost, etc...
 The project is actively developing in proportion to my experience
 
 
+## Library examples & definitions
 
+RUS - [colab.google_notebook](https://colab.research.google.com/drive/1umBPTHGfMzF7aYrcN5ZD6E-GX7s_iM8O?usp=share_link)
+
+ENG - (in process)

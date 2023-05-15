@@ -22,3 +22,6 @@ print('\n')
 
 train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'Age'], stratify='Exited', round_=3)
 print('\n')
+
+train, valid, test = pdf.split.train_valid_test(df, target=['Exited', 'Age'], stratify='Exited', round_=1)
+print('\n')
