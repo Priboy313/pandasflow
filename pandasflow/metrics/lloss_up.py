@@ -9,26 +9,26 @@ from sklearn.metrics import log_loss
 # uplift - чем больше, тем лучше
 
 
-def def_baseline(df, target):
-	base = df[target].sum()
-	base_pct = df[target].sum() / len(df)
+def def_baseline(target):
+	base = target.sum()
+	base_pct = base / len(target)
 	
 	return base, base_pct
 
 
-def _uplift(df, target, sort_score, pct, baseline=None):
-	base, base_pct = def_baseline(df, target)
+def _uplift(target, sort_score, pct, baseline=None):
+	base, base_pct = def_baseline(target)
 	if baseline != None:
 		print('baseline is not None, but unknown')
 	
-	_df = df.sort_values(sort_score, ascending=False)
-	pct_len = round(len(df) * pct)
-	base_found = _df.head(pct_len)[target].sum()
+	_df = sort_score.sort_values(ascending=False)
+	pct_len = round(len(target) * pct)
+	base_found = _df.head(pct_len).sum()
 
 	return base_pct, ((base_found / base) / pct)
 
 
-def lloss_up(df, target, score, pct=0.2, baseline=None):
+def lloss_up(target, score, pct=0.2, baseline=None):
 	'''Для задач классификации с таргетом 0-1
 	Сравнение человеческого baseline с машинным предиктом
 	Возвращает две метрики:
@@ -38,13 +38,10 @@ def lloss_up(df, target, score, pct=0.2, baseline=None):
 	
 	Parameters
 	----------
-	df : pd.DataFrame
-		Таблица данных
-	
-	target : str
+	target : pd.Series
 		Название колонки с искомым значением
 	
-	score : str
+	score : pd.Series
 		Название колонки с предиктом машинного обучение
 		Результат работы, который и сравниваем
 	
@@ -56,8 +53,8 @@ def lloss_up(df, target, score, pct=0.2, baseline=None):
 		Лучше не трогать и оно посчитается от target
 	'''
 
-	lloss = log_loss(df[target], df[score])
-	base, up = _uplift(df, target, score, pct, baseline=baseline)
+	lloss = log_loss(target, score)
+	base, up = _uplift(target, score, pct, baseline=baseline)
 	
 	table = pd.DataFrame()
 	table.index = ['baseline', 'log_loss', 'uplift']

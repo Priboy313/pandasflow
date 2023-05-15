@@ -15,6 +15,6 @@ def reset_mi(table:pd.DataFrame, sep:str='_') -> pd.DataFrame:
 	|-------------|---------------|---------------|---------------|
 	'''
 
-	_table = table
-	_table.columns = [sep.join(col).strip() for col in table.columns.values]
+	_table = table.copy()
+	_table.columns = [sep.join(col).strip() for col in _table.columns.values]
 	return _table

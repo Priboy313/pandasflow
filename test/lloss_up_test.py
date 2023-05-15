@@ -18,4 +18,4 @@ noise = np.random.uniform(0, 0.001, size=len(train_full))
 train_full = train_full.merge(model, how='left', on='NumOfProducts')
 train_full['score_prod'] = train_full['score_prod'] - noise
 
-pdf.metrics.lloss_up(train_full, 'Exited', 'score_prod')
+pdf.metrics.lloss_up(train_full['Exited'], train_full['score_prod'])
