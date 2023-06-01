@@ -27,9 +27,12 @@ def best_f1(y_true:pd.Series, score:pd.Series, out:int=1, tqdm_:bool=True):
 	result = result.sort_values(by='f1', ascending=False)
 	
 	result = result.head(min(out, len(result)))
+	best_thr = result['thr'].loc[result.index[0]]
 	
 	print()
 	print(result)
+	
+	return round(best_thr, 6)
 
 
 
