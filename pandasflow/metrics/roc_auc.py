@@ -4,7 +4,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from matplotlib import pyplot
 
 
-def roc(target, score, plot=False, marker='', round_=2):
+def roc_auc(target, score, plot=False, marker='', round_=2):
 	if type(score) == pd.Series:
 		score_ = []
 		score_.append(score)
