@@ -11,7 +11,7 @@ def calc_class_from_score(score:pd.Series, thr=0.5, y_true:pd.Series | None = No
 	
 	if thr in [True, 0, 'best']:
 		if y_true is not None:
-			_thr = pdf.metrics.best_thr_f1(df['y_true'], df['score'])
+			_thr = pdf.model.best_thr_f1(df['y_true'], df['score'])
 		else:
 			print('incorrect thr, y_true is lost')
 	

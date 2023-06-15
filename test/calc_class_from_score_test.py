@@ -15,7 +15,7 @@ test['y_pred'] = (test['score_prod_age'] > 0.5) * 1
 
 print(test['Exited'])
 
-thr = pdf.metrics.best_thr_f1(test['Exited'], test['score_prod_age'])
+thr = pdf.model.best_thr_f1(test['Exited'], test['score_prod_age'])
 print()
 print(thr)
 print('\nv1')

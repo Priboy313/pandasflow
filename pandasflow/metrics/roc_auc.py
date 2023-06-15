@@ -17,7 +17,7 @@ def roc_auc(target, score, plot=False, marker='', round_=2):
 		
 		auc = roc_auc_score(target, sc)
 		auc = round(auc, round_)
-		print(f"{sc.name} auc: ", auc)
+		print(f"{sc.name}: ", auc)
 	
 	pyplot.xlabel('False Positive Rate')
 	pyplot.ylabel('True Positive Rate')
