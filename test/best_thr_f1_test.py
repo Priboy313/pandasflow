@@ -15,5 +15,5 @@ test = test.merge(model, how='left', on=['NumOfProducts', 'age_group'])
 test['y_pred'] = (test['score_prod_age'] > 0.5) * 1
 
 
-pdf.metrics.best_thr_f1(test['Exited'], test['score_prod_age'], tqdm_=False)
+pdf.metrics.best_thr_f1(test['Exited'], test['score_prod_age'])
 

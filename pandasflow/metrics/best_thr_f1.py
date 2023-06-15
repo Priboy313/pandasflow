@@ -1,10 +1,9 @@
-
 import pandas as pd
 from sklearn.metrics import f1_score
-from tqdm.notebook import tqdm
 
+from tqdm.auto import tqdm
 
-def best_thr_f1(y_true:pd.Series, score:pd.Series, out:int=1, tqdm_:bool=True):
+def best_thr_f1(y_true:pd.Series, score:pd.Series, out:int=1):
 	thrs = list(score.unique())
 	thrs = [max(min(thrs) - 0.000001, 0.000001)] + thrs
 	
@@ -12,9 +11,7 @@ def best_thr_f1(y_true:pd.Series, score:pd.Series, out:int=1, tqdm_:bool=True):
 	
 	result = []
 	
-	if tqdm_: thrs = tqdm(thrs)
-	
-	for thr in thrs:
+	for thr in tqdm(thrs):
 		df['y_pred_thr'] = (df[score.name] > thr) * 1
 		result.append(
 			(
