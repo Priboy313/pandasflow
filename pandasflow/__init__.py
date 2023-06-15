@@ -3,7 +3,7 @@
 
 
 
-__version__ = '0.6.1'
+__version__ = '0.7.0'
 
 requirements = ['pandas', 'scikit-learn', 'catboost', 'phik', 'shap', 'tqdm']
 
@@ -25,6 +25,6 @@ from pandasflow import split
 
 from pandasflow import metrics
 
-
+from pandasflow import model
 
 
