@@ -28,14 +28,7 @@ def conf_mat(y_true, y_pred, labels=None, sample_weight=None, normalize=None):
 	"""
 	tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=labels, sample_weight=sample_weight, normalize=normalize).ravel()
 	
-	table = pd.DataFrame()
-	table['']   = ['TN', 'FN']
-	table[' ']  = [tn, fn]
-	table['  '] = [fp, tp]
-	table['   '] = ['FP', 'TP']
-	table.index = ['', '']
-	
-	print(table)
+	print(f'TN: {tn}\nFP: {fp}\nFN: {fn}\nTP: {tp}')
 	print()
 	return tn, fp, fn, tp
 

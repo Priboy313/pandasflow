@@ -27,8 +27,8 @@ t['y_score3'] = np.concatenate([np.random.uniform(0, 0.2, size=850), #TN
 
 
 
-pdf.metrics.precision_recall(t['y_true'], score=t['y_score1'], plot=True)
+# pdf.metrics.precision_recall(t['y_true'], y_pred=t['y_score1'], plot=True)
 
-# pdf.metrics.precision_recall(t['y_true'], score=[t['y_score1'], t['y_score2']])
+pdf.metrics.precision_recall(t['y_true'], y_pred=[t['y_score1'], t['y_score2']], plot=True)
 
-# pdf.metrics.precision_recall(t['y_true'], score=[t['y_score1'], t['y_score2'], t['y_score3']], plot=True)
+# pdf.metrics.precision_recall(t['y_true'], y_pred=[t['y_score1'], t['y_score2'], t['y_score3']], plot=True)
