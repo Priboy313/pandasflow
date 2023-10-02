@@ -91,8 +91,6 @@ def train_valid_test(
 				 '',
 				 amount_prop,
 				 ''],
-		
-		
 	})
 	
 	if target != None:

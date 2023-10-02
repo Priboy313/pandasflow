@@ -1,6 +1,6 @@
 
 
-
+from pandasflow.metrics.metrics_class import metrics_class
 
 from pandasflow.metrics.mean_error import mean_error
 
