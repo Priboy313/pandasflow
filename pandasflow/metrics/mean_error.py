@@ -19,19 +19,26 @@ def mean_error(y_true: pd.Series, y_pred: pd.Series,
 	mae = mean_absolute_error(y_true, y_pred)
 	mape = mean_absolute_percentage_error(y_true, y_pred)
 	smape = services.smape(y_true, y_pred)
-	rmsle = mean_squared_log_error(y_true, y_pred, squared=False)
 	rmse = mean_squared_error(y_true, y_pred, squared=False)
+	try:
+		rmsle = mean_squared_log_error(y_true, y_pred, squared=False)
+	except Exception:
+		rmsle = -1.111
 	
 	if round_ is not None:
 		mae		= round(mae, round_)
 		mape	= round(mape, round_)
 		smape	= round(smape, round_)
-		rmsle	= round(rmsle, round_)
 		rmse	= round(rmse, round_)
-	
+		
+		try:
+			rmsle	= round(rmsle, round_)
+		except Exception:
+			rmsle	= -1.111
+		
 	table = pd.DataFrame()
-	table.index =	['MAE', 'MAPE', 'SMAPE', 'RMSLE', 'RMSE']
-	table['current'] =	[mae, mape, smape, rmsle, rmse]
+	table.index =	['MAE', 'MAPE', 'SMAPE', 'RMSE', 'RMSLE']
+	table['current'] =	[mae, mape, smape, rmse, rmsle]
 	
 	if previous is not None:
 		if len(previous) != len(table.index):

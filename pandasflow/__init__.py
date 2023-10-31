@@ -3,7 +3,7 @@
 
 
 
-__version__ = '0.9.10'
+__version__ = '0.9.13'
 
 requirements = ['pandas', 'scikit-learn', 'catboost', 'phik', 'shap', 'tqdm']
 
