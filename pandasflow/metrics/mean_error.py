@@ -50,7 +50,7 @@ def mean_error(y_true: pd.Series, y_pred: pd.Series,
 		table['diff'] = (table['current'] - table['previous']) * -1
 		if round_ is not None: table['diff'] = round(table['diff'], round_)
 		
-		table['%diff'] = round(table['diff'] / table['current'] * 100, 2)
+		table['diff %'] = round(table['diff'] / table['current'] * 100, 2)
 	
 	print(table)
 	
