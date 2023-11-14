@@ -10,6 +10,11 @@ def best_thr_f1(y_true:pd.Series, score:pd.Series, bins:int = 100, out:int=1, r:
 	
 	percentiles = np.arange(0, 100, 100/bins)
 	thrs = np.percentile(scores, percentiles)
+	thrs = list(thrs)
+	thrs.append(score.mean())
+	thrs.append(score.median())
+	thrs.append(score.min())
+	thrs.append(score.max())
 	
 	df = pd.concat([y_true, score], axis=1)
 	result = []
