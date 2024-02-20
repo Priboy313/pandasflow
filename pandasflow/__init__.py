@@ -3,12 +3,13 @@
 
 
 
-__version__ = '0.10.0'
+__version__ = '0.10.1'
 
 requirements = ['pandas', 'scikit-learn', 'phik', 'shap', 'tqdm']
 
 
 
+from pandasflow.get_news import get_news
 
 from pandasflow.get_import import get_import
 
