@@ -3,9 +3,9 @@
 
 
 
-__version__ = '0.9.22'
+__version__ = '0.10.0'
 
-requirements = ['pandas', 'scikit-learn', 'catboost', 'phik', 'shap', 'tqdm']
+requirements = ['pandas', 'scikit-learn', 'phik', 'shap', 'tqdm']
 
 
 

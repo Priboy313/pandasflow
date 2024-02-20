@@ -12,11 +12,10 @@ import sklearn
 import phik
 import shap
 
-from catboost import CatBoostClassifier, CatBoostRegressor
-from catboost import Pool
+import warnings
+warnings.filterwarnings("ignore", "FutureWarnings")
 
 plt.style.use("dark_background")
-shap.initjs()
 '''[1:])
 
 
